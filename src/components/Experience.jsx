@@ -8,7 +8,7 @@ import {
 
 const timeline = [
   {
-    year: "2023",
+    year: "2022",
     title: "Started Computer Science",
     icon: <FaGraduationCap />,
     description:
