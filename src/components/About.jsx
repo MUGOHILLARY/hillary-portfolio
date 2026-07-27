@@ -1,76 +1,69 @@
 import { motion } from "framer-motion";
-import profile from "../assets/profile.jpg";
 import {
-  FaGraduationCap,
-  FaLaptopCode,
+  FaCode,
   FaBrain,
   FaShieldAlt,
-  FaMapMarkerAlt,
-  FaUserCheck,
+  FaServer,
 } from "react-icons/fa";
 
-const quickFacts = [
-  {
-    icon: <FaGraduationCap />,
-    title: "Education",
-    value: "BSc Computer Science",
-  },
-  {
-    icon: <FaLaptopCode />,
-    title: "Specialization",
-    value: "Full Stack Development",
-  },
-  {
-    icon: <FaBrain />,
-    title: "Interest",
-    value: "Artificial Intelligence",
-  },
-  {
-    icon: <FaShieldAlt />,
-    title: "Passion",
-    value: "Cybersecurity",
-  },
-  {
-    icon: <FaMapMarkerAlt />,
-    title: "Location",
-    value: "Nairobi, Kenya",
-  },
-  {
-    icon: <FaUserCheck />,
-    title: "Status",
-    value: "Available for Internship",
-  },
-];
-
 const About = () => {
+  const highlights = [
+    {
+      icon: <FaCode />,
+      title: "Frontend Development",
+      description:
+        "Building responsive, accessible and interactive user interfaces using React, JavaScript and Tailwind CSS.",
+    },
+    {
+      icon: <FaServer />,
+      title: "Backend Development",
+      description:
+        "Developing scalable REST APIs, authentication systems and databases with Node.js, Express and MongoDB.",
+    },
+    {
+      icon: <FaBrain />,
+      title: "Artificial Intelligence",
+      description:
+        "Exploring AI-powered applications, intelligent assistants and automation solutions using modern AI technologies.",
+    },
+    {
+      icon: <FaShieldAlt />,
+      title: "Cybersecurity",
+      description:
+        "Passionate about secure software development, authentication, threat awareness and protecting digital systems.",
+    },
+  ];
+
   return (
     <section
       id="about"
-      className="bg-slate-950 py-28 px-6 text-white"
+      className="bg-slate-950 py-24 text-white"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10">
 
         {/* Heading */}
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: .7 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="text-center mb-20"
         >
           <p className="uppercase tracking-[5px] text-cyan-400 font-semibold">
             About Me
           </p>
 
-          <h2 className="text-5xl font-black mt-4">
-            Get To Know Me
+          <h2 className="text-4xl md:text-5xl font-black mt-4">
+            Who I Am
           </h2>
 
-          <div className="w-28 h-1 bg-cyan-400 mx-auto mt-6 rounded-full"></div>
+          <div className="w-28 h-1 bg-cyan-400 mx-auto rounded-full mt-6"></div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-20 items-center mt-20">
+        {/* Main Content */}
+
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* Left */}
 
@@ -79,19 +72,30 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: .8 }}
             viewport={{ once: true }}
-            className="flex justify-center"
           >
-            <div className="relative">
 
-              <div className="absolute inset-0 rounded-3xl bg-cyan-500 blur-3xl opacity-20"></div>
+            <h3 className="text-3xl font-bold mb-8">
+              Building Modern Digital Experiences
+            </h3>
 
-              <img
-                src={profile}
-                alt="Hillary Kuria"
-                className="relative w-[380px] rounded-3xl border border-slate-700 shadow-2xl"
-              />
+            <p className="text-slate-400 leading-8 mb-6 text-lg">
+              I am Hillary Kuria, a passionate Full Stack Developer dedicated
+              to creating high-quality software solutions that combine
+              functionality, performance and beautiful user experiences.
+            </p>
 
-            </div>
+            <p className="text-slate-400 leading-8 mb-6 text-lg">
+              My interests span frontend development, backend engineering,
+              Artificial Intelligence and Cybersecurity. I enjoy solving
+              complex problems and continuously learning emerging technologies.
+            </p>
+
+            <p className="text-slate-400 leading-8 text-lg">
+              My goal is to build innovative software that creates meaningful
+              impact while maintaining clean architecture, secure systems and
+              exceptional user experience.
+            </p>
+
           </motion.div>
 
           {/* Right */}
@@ -101,76 +105,37 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: .8 }}
             viewport={{ once: true }}
+            className="grid sm:grid-cols-2 gap-6"
           >
 
-            <h3 className="text-4xl font-bold mb-8">
-              Hillary Kuria
-            </h3>
+            {highlights.map((item, index) => (
 
-            <p className="text-slate-300 leading-8 text-lg mb-6">
+              <motion.div
+                key={index}
+                whileHover={{
+                  y: -8,
+                  scale: 1.03,
+                }}
+                className="bg-slate-900 border border-slate-800 hover:border-cyan-400 rounded-2xl p-6 transition-all duration-300"
+              >
 
-              I'm a Computer Science student at
-              <span className="text-cyan-400 font-semibold">
-                {" "}Multimedia University of Kenya
-              </span>
-              , passionate about building modern software solutions that solve
-              real-world problems.
+                <div className="text-4xl text-cyan-400 mb-5">
+                  {item.icon}
+                </div>
 
-            </p>
+                <h4 className="text-xl font-bold mb-3">
+                  {item.title}
+                </h4>
 
-            <p className="text-slate-400 leading-8 mb-6">
+                <p className="text-slate-400 leading-7">
+                  {item.description}
+                </p>
 
-              My interests span Full Stack Development, Artificial Intelligence,
-              backend engineering, and cybersecurity. I enjoy transforming ideas
-              into scalable, user-friendly applications while continuously
-              learning emerging technologies.
+              </motion.div>
 
-            </p>
-
-            <p className="text-slate-400 leading-8">
-
-              I'm currently seeking internship opportunities where I can
-              contribute to impactful software projects, collaborate with
-              experienced developers, and continue growing both technically and
-              professionally.
-
-            </p>
+            ))}
 
           </motion.div>
-
-        </div>
-
-        {/* Quick Facts */}
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-24">
-
-          {quickFacts.map((fact, index) => (
-
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * .1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              className="rounded-2xl border border-slate-800 bg-slate-900/70 backdrop-blur p-7"
-            >
-
-              <div className="text-cyan-400 text-3xl mb-5">
-                {fact.icon}
-              </div>
-
-              <h4 className="font-bold text-xl mb-2">
-                {fact.title}
-              </h4>
-
-              <p className="text-slate-400">
-                {fact.value}
-              </p>
-
-            </motion.div>
-
-          ))}
 
         </div>
 

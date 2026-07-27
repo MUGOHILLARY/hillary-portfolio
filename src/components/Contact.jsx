@@ -1,122 +1,220 @@
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
+
 import {
-  FaPhone,
   FaEnvelope,
+  FaPhoneAlt,
   FaMapMarkerAlt,
   FaGithub,
   FaLinkedin,
 } from "react-icons/fa";
 
 const Contact = () => {
+  const form = useRef();
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setMessage("");
+
+    emailjs
+      .sendForm(
+        "service_ysdlxtx",
+        "template_5kje48m",
+        form.current,
+        "1_fwu71okSt5nNiF0"
+      )
+      .then(() => {
+        setLoading(false);
+        setMessage("✅ Message sent successfully!");
+
+        form.current.reset();
+      })
+      .catch(() => {
+        setLoading(false);
+        setMessage("❌ Failed to send message. Please try again.");
+      });
+  };
+
   return (
     <section
       id="contact"
-      className="bg-slate-950 text-white py-24 px-6"
+      className="bg-slate-950 py-24 text-white"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10">
+
+        {/* Heading */}
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: .8 }}
           viewport={{ once: true }}
+          className="text-center mb-20"
         >
-          <h2 className="text-5xl font-bold">
-            Get In Touch
+          <p className="uppercase tracking-[5px] text-cyan-400 font-semibold">
+            Contact
+          </p>
+
+          <h2 className="text-4xl md:text-5xl font-black mt-4">
+            Let's Work Together
           </h2>
 
-          <div className="w-24 h-1 bg-cyan-400 mt-3 mb-16"></div>
+          <div className="w-28 h-1 bg-cyan-400 mx-auto rounded-full mt-6"></div>
+
+          <p className="text-slate-400 mt-6 max-w-2xl mx-auto text-lg">
+            I'm currently open to internships, freelance opportunities,
+            collaborations and exciting software development projects.
+          </p>
+
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-14">
 
-          {/* Left Side */}
+          {/* Contact Information */}
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: .8 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
 
-            <h3 className="text-3xl font-semibold mb-8">
-              Let's Build Something Amazing
-            </h3>
-
-            <p className="text-slate-400 leading-8 mb-10">
-              I'm always open to internship opportunities,
-              freelance work, collaborations, and exciting software
-              development projects.
-            </p>
-
-            <div className="space-y-6">
-
+            <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
               <div className="flex items-center gap-5">
-                <FaPhone className="text-cyan-400 text-2xl" />
-                <span>0115632367</span>
-              </div>
+                <FaEnvelope className="text-cyan-400 text-3xl" />
 
-              <div className="flex items-center gap-5">
-                <FaEnvelope className="text-cyan-400 text-2xl" />
-                <span>hillarymugo04@gmail.com</span>
-              </div>
+                <div>
+                  <h3 className="font-bold text-xl">
+                    Email
+                  </h3>
 
-              <div className="flex items-center gap-5">
-                <FaMapMarkerAlt className="text-cyan-400 text-2xl" />
-                <span>Nairobi, Kenya</span>
+                  <p className="text-slate-400">
+                    hillarymugo04@gmail.com
+                  </p>
+                </div>
               </div>
-
             </div>
 
-            <div className="flex gap-5 mt-10">
+            <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+              <div className="flex items-center gap-5">
+                <FaPhoneAlt className="text-cyan-400 text-3xl" />
+
+                <div>
+                  <h3 className="font-bold text-xl">
+                    Phone
+                  </h3>
+
+                  <p className="text-slate-400">
+                    +254 115 632 367
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+              <div className="flex items-center gap-5">
+                <FaMapMarkerAlt className="text-cyan-400 text-3xl" />
+
+                <div>
+                  <h3 className="font-bold text-xl">
+                    Location
+                  </h3>
+
+                  <p className="text-slate-400">
+                    Nairobi, Kenya
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-4 pt-4">
 
               <a
-                href="https://github.com/"
+                href="https://github.com/MUGOHILLARY"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-slate-800 p-4 rounded-full hover:bg-cyan-500 transition"
+                className="text-3xl hover:text-cyan-400 transition"
               >
-                <FaGithub size={24} />
+                <FaGithub />
               </a>
 
               <a
-                href="https://linkedin.com/"
+                href="https://www.linkedin.com/in/hillary-kuria"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-slate-800 p-4 rounded-full hover:bg-cyan-500 transition"
+                className="text-3xl hover:text-cyan-400 transition"
               >
-                <FaLinkedin size={24} />
+                <FaLinkedin />
               </a>
 
             </div>
 
-          </div>
+          </motion.div>
 
-          {/* Right Side */}
+          {/* Contact Form */}
 
           <motion.form
-            whileHover={{ scale: 1.01 }}
-            className="bg-slate-900 border border-slate-800 rounded-2xl p-8"
+            ref={form}
+            onSubmit={sendEmail}
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: .8 }}
+            viewport={{ once: true }}
+            className="bg-slate-900 p-8 rounded-3xl border border-slate-800 space-y-5"
           >
 
             <input
               type="text"
+              name="from_name"
               placeholder="Your Name"
-              className="w-full mb-6 p-4 rounded-lg bg-slate-800 outline-none"
+              required
+              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-5 py-4 outline-none focus:border-cyan-400"
             />
 
             <input
               type="email"
-              placeholder="Email Address"
-              className="w-full mb-6 p-4 rounded-lg bg-slate-800 outline-none"
+              name="reply_to"
+              placeholder="Your Email"
+              required
+              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-5 py-4 outline-none focus:border-cyan-400"
+            />
+
+            <input
+              type="text"
+              name="subject"
+              placeholder="Subject"
+              required
+              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-5 py-4 outline-none focus:border-cyan-400"
             />
 
             <textarea
               rows="6"
+              name="message"
               placeholder="Your Message"
-              className="w-full mb-6 p-4 rounded-lg bg-slate-800 outline-none resize-none"
-            />
+              required
+              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-5 py-4 outline-none resize-none focus:border-cyan-400"
+            ></textarea>
 
             <button
-              className="w-full bg-cyan-500 hover:bg-cyan-600 py-4 rounded-lg font-semibold transition"
+              type="submit"
+              disabled={loading}
+              className="w-full bg-cyan-500 hover:bg-cyan-600 transition py-4 rounded-xl font-bold"
             >
-              Send Message
+              {loading ? "Sending..." : "Send Message"}
             </button>
+
+            {message && (
+              <p className="text-center font-semibold mt-4">
+                {message}
+              </p>
+            )}
 
           </motion.form>
 

@@ -1,39 +1,27 @@
 import { motion } from "framer-motion";
-import {
-  FaGraduationCap,
-  FaLaptopCode,
-  FaRobot,
-  FaBriefcase,
-} from "react-icons/fa";
+import { FaBriefcase } from "react-icons/fa";
 
-const timeline = [
+const experiences = [
   {
-    year: "2022",
-    title: "Started Computer Science",
-    icon: <FaGraduationCap />,
+    title: "Software Development Student",
+    company: "Multimedia University of Kenya",
+    period: "2023 – Present",
     description:
-      "Began my Bachelor of Science in Computer Science at Multimedia University of Kenya, building a strong foundation in software engineering, algorithms, networking, and databases.",
+      "Pursuing a Bachelor's Degree in Computer Science while building full-stack applications, exploring AI technologies, backend development, and cybersecurity concepts through academic and personal projects.",
   },
   {
-    year: "2024",
-    title: "Full Stack Development",
-    icon: <FaLaptopCode />,
+    title: "Personal Software Projects",
+    company: "Independent Developer",
+    period: "2024 – Present",
     description:
-      "Focused on modern web development using React, JavaScript, Node.js, Tailwind CSS, Express, and REST APIs while creating practical applications.",
+      "Designed and developed modern web applications including a developer portfolio, an AI assistant, Resolve cybersecurity platform, and the Knowledge Hub educational website using React, Node.js, Express, MongoDB, and Tailwind CSS.",
   },
   {
-    year: "2025",
-    title: "AI & Cybersecurity Projects",
-    icon: <FaRobot />,
+    title: "Software Development & Design",
+    company: "Freelance",
+    period: "2024 – Present",
     description:
-      "Developed projects including Aura Assistant, Resolve, Knowledge Hub, and my personal portfolio while exploring Artificial Intelligence and Cybersecurity.",
-  },
-  {
-    year: "2026",
-    title: "Industrial Attachment",
-    icon: <FaBriefcase />,
-    description:
-      "Actively seeking a Software Development internship to apply my technical skills, collaborate with experienced developers, and contribute to impactful software projects.",
+      "Creating responsive websites, posters, branding materials, and user interfaces while continuously improving software engineering, UI/UX, and deployment skills.",
   },
 ];
 
@@ -41,14 +29,14 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="bg-slate-900 py-28 px-6 text-white"
+      className="bg-slate-950 py-24 text-white"
     >
-      <div className="max-w-6xl mx-auto">
-
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: .7 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
@@ -56,58 +44,58 @@ const Experience = () => {
             Experience
           </p>
 
-          <h2 className="text-5xl font-black mt-4">
+          <h2 className="text-4xl md:text-5xl font-black mt-4">
             My Journey
           </h2>
 
-          <div className="w-28 h-1 bg-cyan-400 rounded-full mx-auto mt-6"></div>
+          <div className="w-28 h-1 bg-cyan-400 mx-auto rounded-full mt-6"></div>
+
+          <p className="text-slate-400 mt-6 max-w-2xl mx-auto text-lg">
+            My academic and practical experience in software development,
+            modern web technologies, and building real-world projects.
+          </p>
         </motion.div>
 
-        <div className="relative">
+        {/* Timeline */}
+        <div className="relative border-l-2 border-cyan-500 ml-5 md:ml-10">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: 80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.2,
+              }}
+              viewport={{ once: true }}
+              className="relative mb-14 ml-8"
+            >
+              {/* Timeline Dot */}
+              <div className="absolute -left-[49px] md:-left-[53px] top-2 w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center shadow-lg">
+                <FaBriefcase className="text-slate-950 text-lg" />
+              </div>
 
-          <div className="absolute left-6 top-0 bottom-0 w-1 bg-cyan-500 rounded-full"></div>
+              {/* Card */}
+              <div className="bg-slate-900 border border-slate-800 hover:border-cyan-400 hover:shadow-[0_0_30px_rgba(34,211,238,0.25)] transition-all duration-300 rounded-2xl p-8">
+                <span className="text-cyan-400 font-semibold text-sm uppercase">
+                  {exp.period}
+                </span>
 
-          <div className="space-y-16">
+                <h3 className="text-2xl font-bold mt-2">
+                  {exp.title}
+                </h3>
 
-            {timeline.map((item, index) => (
+                <h4 className="text-slate-300 mt-1">
+                  {exp.company}
+                </h4>
 
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -60 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * .15 }}
-                viewport={{ once: true }}
-                className="relative flex gap-8"
-              >
-
-                <div className="w-12 h-12 rounded-full bg-cyan-500 flex items-center justify-center text-white z-10">
-                  {item.icon}
-                </div>
-
-                <div className="bg-slate-950 rounded-2xl border border-slate-800 p-8 flex-1 hover:border-cyan-500 transition">
-
-                  <span className="text-cyan-400 font-semibold">
-                    {item.year}
-                  </span>
-
-                  <h3 className="text-2xl font-bold mt-2 mb-4">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-slate-400 leading-8">
-                    {item.description}
-                  </p>
-
-                </div>
-
-              </motion.div>
-
-            ))}
-
-          </div>
-
+                <p className="text-slate-400 leading-8 mt-5">
+                  {exp.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
-
       </div>
     </section>
   );
