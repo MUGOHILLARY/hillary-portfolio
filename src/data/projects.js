@@ -12,7 +12,7 @@ const projects = [
       "JavaScript",
     ],
     github: "https://github.com/MUGOHILLARY/hillary-portfolio",
-    demo: "#",
+    demo: "https://hillary-portfolio-three.vercel.app/",
   },
 
   {
@@ -44,7 +44,7 @@ const projects = [
       "Express",
     ],
     github: "https://github.com/MUGOHILLARY",
-    demo: "#",
+    demo: "https://resolve-web-two.vercel.app/",
   },
 
   {
