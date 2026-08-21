@@ -60,7 +60,7 @@ const projects = [
       "Tailwind CSS",
     ],
     github: "https://github.com/MUGOHILLARY",
-    demo: "#",
+    demo: "https://knowledge-hub-jet.vercel.app/",
   },
 ];
 
